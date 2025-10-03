@@ -20,3 +20,13 @@ int check_commande(char *args[]){
     return 0;
 
 }
+
+//Function for remove $ on in variable
+char *parse_word(char *str){
+  
+    if(str[0] == '$'){
+        return str + 1;
+    }
+
+    return str;
+}

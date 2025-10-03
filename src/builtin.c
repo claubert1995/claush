@@ -32,6 +32,7 @@ void dispacth(char *args[]){
     }
 }
 
+
 //this function implement command CD
 void builtin_cd(char *args[]){
 
@@ -57,20 +58,33 @@ void builtin_cd(char *args[]){
   
 }
 
-//this function implement command CD
+//this function implement command ECHO
 void builtin_echo(char *args[]){
     
     int i = 1;
+    char *token_parse[MAX_SIZE];
+    char *word;
 
     while (args[i] != NULL) {
-        printf("%s",args[i]);
+
+        word = args[i];
+
+        if (word[0] == '$') {
+            token_parse[i] = getenv(parse_word(word));
+        }
+        else{
+            token_parse[i] = word;
+        }
+
+        printf("%s",token_parse[i]);
+        
         if(args[i+1]  != NULL ){
             printf(" ");
         }
-
         i++;
     }
     printf("\n");
+
 }
 
 //this builtin function PWD

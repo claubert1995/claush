@@ -30,7 +30,8 @@ int main(int argc,char *argv[]){
 
     do {
         memset(args, 0, sizeof(char *) * MAX_ARGS); 
-        printf(ANSI_COLOR_VERT "[claush: %s] -> "ANSI_COLOR_RESET,getcwd(path, PATH_BUF));
+        printf(ANSI_COLOR_VERT "[claush@%s: %s] -> "ANSI_COLOR_RESET,getenv("USER"),
+            getcwd(path, PATH_BUF));
 
         //get command from user
         if(fgets(cmd_line,MAX_SIZE,stdin) == NULL){
