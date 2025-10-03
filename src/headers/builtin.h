@@ -14,6 +14,7 @@
 #include <stddef.h>
 
 extern char *builtin[];
+extern char **environ;
 
 void dispacth(char *args[]);
 
@@ -22,4 +23,6 @@ void builtin_cd(char *args[]);
 void builtin_echo(char *args[]);
 
 void builtin_pwd();
+
+void builtin_env(char *args[]);
 

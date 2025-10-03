@@ -9,6 +9,7 @@ char *builtin[] ={
     "cd",
     "echo",
     "pwd",
+    "env",
     NULL
 };
 
@@ -22,6 +23,9 @@ void dispacth(char *args[]){
     }
     else if(strcmp(args[0], "pwd") == 0){
         builtin_pwd();
+    }
+    else if (strcmp(args[0], "env") == 0) {
+        builtin_env(args);
     }
     else{
         printf(ANSI_COLOR_ROUGE "Command not found" ANSI_COLOR_RESET);
@@ -80,4 +84,14 @@ void builtin_pwd(){
         perror(" ");
     }
     
+}
+
+//function env
+void builtin_env(char *args[]){
+
+    char **current_env = environ;
+    while (*current_env != NULL) {
+        printf("%s\n",*current_env);
+        current_env++;
+    }
 }
