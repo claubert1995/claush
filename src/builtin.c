@@ -1,4 +1,5 @@
 #include "headers/builtin.h"
+#include "headers/parser.h"
 #include<stdio.h>
 #include <stdlib.h>
 #include<unistd.h>
@@ -77,7 +78,6 @@ void builtin_echo(char *args[]){
         }
 
         printf("%s",token_parse[i]);
-        
         if(args[i+1]  != NULL ){
             printf(" ");
         }

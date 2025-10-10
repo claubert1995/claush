@@ -30,3 +30,29 @@ char *parse_word(char *str){
 
     return str;
 }
+
+//function parsing string for get > symbol
+char *parse_redirection(char *args[]){
+
+    int i = 0;
+    char *filename;
+
+    while (args[i] != NULL) {
+
+
+        if(args[i+1] != NULL && strcmp(args[i + 1], ">") == 0){
+            
+            if(args[i+2] == NULL){
+                return NULL;
+            }
+
+            filename = args[i+2];
+            
+            args[i+1] = NULL;
+            return filename;
+        }
+
+        i++;
+    }
+    return NULL;
+}

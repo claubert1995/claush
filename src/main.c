@@ -17,13 +17,14 @@
 |--------------------------------------------------------------
 */
 
-int main(int argc,char *argv[]){
+int main(void){
 
     char cmd_line[MAX_SIZE];//Line for get input user
     int continu = 1; //variable for exit the loop 1 = true or 0 = false
     char *token; // variable for stock token from strtok()
     char *args[MAX_SIZE];
     char path[PATH_BUF];
+    char *file_redirect; //gettter for filename 
 
     printf("claush - version 1.0.0 - copyright 2025\n");
     chdir("/home");
@@ -64,11 +65,20 @@ int main(int argc,char *argv[]){
         if(strcmp(args[0],"exit") == 0){
             continu = 0;
         }
-        else if (check_commande(args) == 1) {
-            dispacth(args);
+        
+        file_redirect = parse_redirection(args);
+
+        if(file_redirect != NULL){
+
+            extern_command_redirection(args, file_redirect);
         }
         else{
-            extern_command(args);
+            if(check_commande(args) == 1) {
+                dispacth(args);
+            }
+            else{
+                extern_command(args);
+            }
         }
         
     }while(continu);
